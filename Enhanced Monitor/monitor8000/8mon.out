@@ -1,0 +1,14 @@
+
+C:\My Commodore\Commodore 2018\Commodore Macro Assembler Development System\MADS 64 Assembler64 Extensions\Enhanced Monitor\monitor8000 tass>64tass 8mon.asm -L 8mon.lst -o 8mon.prg  
+64tass Turbo Assembler Macro V1.53.1515
+64TASS comes with ABSOLUTELY NO WARRANTY; This is free software, and you
+are welcome to redistribute it under certain conditions; See LICENSE!
+
+Assembling file:   8mon.asm
+Assembling file:   mon.asm
+Error messages:    None
+Warning messages:  None
+Passes:            3
+Memory range:      $8000-$8fff   $1000
+
+C:\My Commodore\Commodore 2018\Commodore Macro Assembler Development System\MADS 64 Assembler64 Extensions\Enhanced Monitor\monitor8000 tass>rem pause 

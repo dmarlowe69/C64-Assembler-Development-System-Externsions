@@ -1,0 +1,15 @@
+
+C:\My Commodore\Commodore 2018\Commodore Macro Assembler Development System\MADS 64 Assembler64 Extensions\Enhanced Editor\Enhanced Editor tass>64tass editorfil.asm -L editorfil.lst -o editorfil.prg  
+64tass Turbo Assembler Macro V1.53.1515
+64TASS comes with ABSOLUTELY NO WARRANTY; This is free software, and you
+are welcome to redistribute it under certain conditions; See LICENSE!
+
+Assembling file:   editorfil.asm
+Assembling file:   editor.asm
+Assembling file:   edhelpfil.asm
+Error messages:    None
+Warning messages:  None
+Passes:            3
+Memory range:      $c000-$c6c9   $06ca
+
+C:\My Commodore\Commodore 2018\Commodore Macro Assembler Development System\MADS 64 Assembler64 Extensions\Enhanced Editor\Enhanced Editor tass>rem pause 

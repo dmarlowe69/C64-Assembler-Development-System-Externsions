@@ -1,0 +1,15 @@
+
+C:\Users\Denton\Desktop\Disassmbler64 2017 3-21-18\Disassmbler64 2017 tass 3-21-18>64tass disassembler64.asm -L disassembler64.lst -o disassembler64.prg  
+64tass Turbo Assembler Macro V1.53.1515
+64TASS comes with ABSOLUTELY NO WARRANTY; This is free software, and you
+are welcome to redistribute it under certain conditions; See LICENSE!
+
+Assembling file:   disassembler64.asm
+Error messages:    None
+Warning messages:  None
+Passes:            3
+Memory range:      $0801-$08f1   $00f1
+Memory range:      $09f2-$274a   $1d59
+Memory range:      $2f4b-$31d8   $028e
+
+C:\Users\Denton\Desktop\Disassmbler64 2017 3-21-18\Disassmbler64 2017 tass 3-21-18>rem pause 

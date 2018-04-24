@@ -1,0 +1,20 @@
+10 ifa=0thena=1:print"{clr}":load"dos 5.1e",8,1
+15 poke53070,8:sys52224:poke53070,2:print"{down}          {rvon} command summary "
+20 print".$ directory        `  error status
+25 print".v validate        >n  device# = n
+30 print".i initialize       !  monitor/break
+35 print".q  disable dos support
+40 print"sys 52224  reactivate dos support
+45 print"/filename              load
+50 print"^filename              load & run
+55 print"&filename              append
+60 print"?filename              save
+65 print"?`0:filename           save & replace
+70 print"=filename              verify
+75 print"%filename              load absolute
+80 print".s0:filename           scratch
+85 print".r0:newname=0:oldname  rename
+90 print".c0:newfile=0:oldfile  copy/merge 1-4
+92 print"  ,0:old2,---0:old4      files
+95 print".n0:diskname,id        format new disk
+100 new

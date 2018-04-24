@@ -1,0 +1,16 @@
+
+C:\Users\Denton\Desktop\prg2byte\prg2byte64\prg2ByteWord tass>64tass bprg2byte.asm -L bprg2byte.lst -o bprg2byte.prg  
+64tass Turbo Assembler Macro V1.53.1515
+64TASS comes with ABSOLUTELY NO WARRANTY; This is free software, and you
+are welcome to redistribute it under certain conditions; See LICENSE!
+
+Assembling file:   bprg2byte.asm
+Assembling file:   prg2byte.asm
+Assembling file:   doword.asm
+Assembling file:   dodby.asm
+Error messages:    None
+Warning messages:  None
+Passes:            3
+Memory range:      $0801-$11a9   $09a9
+
+C:\Users\Denton\Desktop\prg2byte\prg2byte64\prg2ByteWord tass>rem pause 

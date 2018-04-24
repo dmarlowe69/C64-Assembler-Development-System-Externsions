@@ -1,0 +1,15 @@
+
+C:\Users\Denton\Desktop\Github\MADS 64 Assembler64 Extensions\Enhanced Loader\loloader>64tass loloader.asm -L loloader.lst -o loloader.prg  
+64tass Turbo Assembler Macro V1.53.1515
+64TASS comes with ABSOLUTELY NO WARRANTY; This is free software, and you
+are welcome to redistribute it under certain conditions; See LICENSE!
+
+Assembling file:   loloader.asm
+Assembling file:   loader.asm
+Assembling file:   savobj.asm
+Error messages:    None
+Warning messages:  None
+Passes:            3
+Memory range:      $0801-$0bd8   $03d8
+
+C:\Users\Denton\Desktop\Github\MADS 64 Assembler64 Extensions\Enhanced Loader\loloader>rem pause 

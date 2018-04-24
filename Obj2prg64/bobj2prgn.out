@@ -1,0 +1,14 @@
+
+C:\Users\Denton\Desktop\Github\MADS 64 Assembler64 Extensions\Obj2prg64>64tass bobj2prgn.asm -L bobj2prgn.lst -o bobj2prgn.prg  
+64tass Turbo Assembler Macro V1.53.1515
+64TASS comes with ABSOLUTELY NO WARRANTY; This is free software, and you
+are welcome to redistribute it under certain conditions; See LICENSE!
+
+Assembling file:   bobj2prgn.asm
+Assembling file:   obj2prgn.asm
+Error messages:    None
+Warning messages:  None
+Passes:            3
+Memory range:      $0801-$0e1b   $061b
+
+C:\Users\Denton\Desktop\Github\MADS 64 Assembler64 Extensions\Obj2prg64>rem pause 

@@ -1,0 +1,494 @@
+
+; 64tass Turbo Assembler Macro V1.53.1515 listing file
+; 64tass -L ccdose.lst -o ccdose.prg ccdose.asm
+; Tue Apr 24 16:17:55 2018
+
+;Offset	;Hex		;Monitor	;Source
+
+;******  Processing input file: ccdose.asm
+
+
+;******  Processing file: dos51e.asm
+
+=$2b					TXTTAB=$2B ;START OF BASIC TEXT
+=$2d					VARTAB=$2D ;START OF BASIC STORAGE
+=$73					CHRGET=$73 ;BASIC INPUT PROCESSOR
+=$79					CHRGOT=$79 ;GET CURRENT CHARACTER
+=$7a					TXTPTR=$7A ;CHRGET POINTER
+=$7c					POINTB=$7C ;CHRGET PATCH POINT
+=$80					SPCCHK=$80 ;CHRGET SPACE CHECK
+=$8a					CHREXT=$8A ;CHRGET EXIT
+=$a5					OFFSET=$A5 ;OFFSET INTO COMMANDS
+=$a6					SAVA  =$A6 ;ACCUMULATE STORAGE
+=$a7					SAVX  =$A7 ;X INDEX REG STORAGE
+=$c3					TEMP  =$C3 ;COUNTER
+=$90					STATUS=$90 ;KERNAL I/O STATUS
+=$ae					EAL   =$AE ;END OF LOAD ADDRESS
+=$b7					FNLEN =$B7 ;LENGHT OF FILENAME
+=$b9					SA    =$B9 ;SECONDARY ADDRESS
+=$ba					FA    =$BA ;DEVICE NUMBER
+=$bb					FNADR =$BB ;POINTER TO FILENAME
+=$0100					STACK =$0100 ;6502 PROCESSOR STACK
+=$a533					LNKPRG=$A533 ;RELINK BASIC LINES
+=$a659					RUNC  =$A659 ;SETUP BASIC
+=$a65e					CLEAR =$A65E ;CLEAR
+=$a68e					STXPT =$A68E ;SETUP FOR RUN
+=$a7ae					NEWSTT=$A7AE ;RUN BASIC PRG
+=$af08					SYNERR=$AF08 ;SYNTAX ERROR
+=$bdcd					LINPRT=$BDCD ;PRINT LINE NUMBER
+=$e0f9					KERIO =$E0F9 ; KERNAL I/O
+=$e159					SAVET =$E159 ;SAVE (PARAMS SET)
+=$e386					BASSFT=$E386 ;RETURN TO BASIC
+=$e3ab					CHRCPY=$E3AB ;ROM COPY OF CHRGET
+=$e716					PRT   =$E716 ;PRINT CHARACTER
+=$f3d5					SROPEN=$F3D5 ;OPEN FILE
+=$f642					XCLOSE=$F642 ;CLOSE FILE
+=$ffb1					LISTEN=$FFB1 ;SEND LISTEN
+=$ff93					SECOND=$FF93 ;SEND SECOND
+=$ffa8					CIOUT =$FFA8 ;SEND CHAR TO SERIAL
+=$ffae					UNLSN =$FFAE ;SEND UNLISTEN
+=$ffb4					TALK  =$FFB4 ;SEND TALK
+=$ff96					TKSA  =$FF96 ;SEND TALK SECOND
+=$ffa5					ACPTR =$FFA5 ;GET CHAR FROM BUS
+=$ffab					UNTLK =$FFAB ;SEND UNTALK
+=$ffe1					STOP  =$FFE1 ;CHECK STOP KEY
+=$ffe4					GETIN =$FFE4 ;GET KEY
+=$ffd5					LOAD  =$FFD5 ;LOAD PRG
+=$ff90					SETMSG=$FF90 ;KERNAL MESSAGES
+=$ffb7					READST=$FFB7
+.cc00	4c e1 cc	jmp $cce1	DOSWDG  JMP START
+>cc03	ce				HIHVEC .BYTE >VECTR1 ;%
+>cc04	ce				       .BYTE >VECTR2 ;/
+>cc05	ce				       .BYTE >VECTR3 ;TOKENED /
+>cc06	ce				       .BYTE >VECTR4 ;^
+>cc07	ce				       .BYTE >VECTR5 ;TOKENED ^
+>cc08	cf				       .BYTE >VECTR6 ;_
+>cc09	cd				       .BYTE >VECTR7 ;
+>cc0a	cd				       .BYTE >VECTR8 ;
+>cc0b	cd				       .BYTE >VECTR9 ;
+>cc0c	cc				       .BYTE >VECTRA ;
+>cc0d	cd				       .BYTE >VECTRB ;
+>cc0e	cd				XXCC0E .BYTE >VECTRC ;
+>cc0f	21				LOWVEC .BYTE <VECTR1 ;%
+>cc10	21				       .BYTE <VECTR2 ;/
+>cc11	21				       .BYTE <VECTR3 ;TOKENED /
+>cc12	21				       .BYTE <VECTR4 ;^
+>cc13	21				       .BYTE <VECTR5 ;TOKENED ^
+>cc14	ef				       .BYTE <VECTR6 ;_
+>cc15	47				       .BYTE <VECTR7 ;
+>cc16	47				       .BYTE <VECTR8 ;
+>cc17	47				       .BYTE <VECTR9 ;
+>cc18	dc				       .BYTE <VECTRA ;
+>cc19	47				       .BYTE <VECTRB ;
+>cc1a	47				XXCC1A .BYTE <VECTRC ;
+>cc1b	25				SYMBOL .TEXT '%' ;$25
+>cc1c	2f				       .TEXT '/' ;$2F
+>cc1d	26				       .TEXT '&' ;$26
+>cc1e	5e				       .TEXT $5E ;UP ARROW
+>cc1f	3d				       .TEXT '=' ;$3D
+>cc20	5f				       .TEXT $5F ;LEFT ARROW
+>cc21	40				       .TEXT '@' ;$40
+>cc22	2e				       .TEXT '.' ;$2E
+>cc23	3e				       .TEXT '>' ;$3E
+>cc24	21				       .TEXT '!' ;$21
+>cc25	40				       .TEXT '@' ;$40
+>cc26	40				XXCC26 .TEXT '@' ;$40
+>cc27	53 aa aa			XXCC27 .BYTE $53,$AA,$AA
+>cc2a	aa aa aa aa aa aa aa		       .BYTE $AA,$AA,$AA,$AA,$AA,$AA,$AA
+>cc31	aa aa aa aa aa aa aa		       .BYTE $AA,$AA,$AA,$AA,$AA,$AA,$AA
+>cc38	aa aa aa aa aa aa aa		       .BYTE $AA,$AA,$AA,$AA,$AA,$AA,$AA
+>cc3f	aa aa aa aa aa aa aa		       .BYTE $AA,$AA,$AA,$AA,$AA,$AA,$AA
+>cc46	aa aa aa aa aa aa aa		       .BYTE $AA,$AA,$AA,$AA,$AA,$AA,$AA
+>cc4d	aa aa aa aa aa aa aa		       .BYTE $AA,$AA,$AA,$AA,$AA,$AA,$AA
+>cc54	aa aa aa aa aa aa aa		       .BYTE $AA,$AA,$AA,$AA,$AA,$AA,$AA
+>cc5b	aa aa aa aa aa aa aa		       .BYTE $AA,$AA,$AA,$AA,$AA,$AA,$AA
+>cc62	aa aa aa aa aa aa aa		       .BYTE $AA,$AA,$AA,$AA,$AA,$AA,$AA
+>cc69	aa aa aa aa aa aa aa		       .BYTE $AA,$AA,$AA,$AA,$AA,$AA,$AA
+>cc70	aa aa aa aa aa aa aa		       .BYTE $AA,$AA,$AA,$AA,$AA,$AA,$AA
+>cc77	08				DEVICE .BYTE $08
+>cc78	38 34				SUFFIX .TEXT '8','4'
+>cc7a	21				CURSYM .TEXT '!'
+>cc7b	0d				MANAGE .BYTE $0D
+>cc7c	20 20 20 20 20 20 44 4f		       .TEXT '      DOS MANAGER 5.1E/031583'
+>cc84	53 20 4d 41 4e 41 47 45 52 20 35 2e 31 45 2f 30
+>cc94	33 31 35 38 33
+>cc99	0d				       .BYTE $0D
+>cc9a	20 20 46 52 4f 4d 20 56		       .TEXT '  FROM V5.1 BY BOB FAIRBAIRN (C) CBM'
+>cca2	35 2e 31 20 42 59 20 42 4f 42 20 46 41 49 52 42
+>ccb2	41 49 52 4e 20 28 43 29 20 43 42 4d
+>ccbe	0d				       .BYTE $0D
+>ccbf	20 20 20 20 20 45 58 54		       .TEXT '     EXTENDED BY S S MACHINES'
+>ccc7	45 4e 44 45 44 20 42 59 20 53 20 53 20 4d 41 43
+>ccd7	48 49 4e 45 53
+>ccdc	0d				       .BYTE $0D
+.ccdd	00		brk #		MONTOR  BRK
+.ccde	4c f3 cc	jmp $ccf3	PATCH  JMP WEDGE
+.cce1	a2 02		ldx #$02	START  LDX #$02
+.cce3	bd de cc	lda $ccde,x	S1     LDA PATCH,X
+.cce6	95 7c		sta $7c,x	       STA POINTB,X
+.cce8	ca		dex		       DEX
+.cce9	10 f8		bpl $cce3	       BPL S1
+.cceb	a5 ba		lda $ba		       LDA FA
+.cced	8d 77 cc	sta $cc77	       STA DEVICE
+.ccf0	4c 4b cf	jmp $cf4b	       JMP PRMESS
+.ccf3	85 a6		sta $a6		WEDGE  STA SAVA
+.ccf5	86 a7		stx $a7		       STX SAVX
+.ccf7	ba		tsx		       TSX
+.ccf8	bd 01 01	lda $0101,x	       LDA STACK+1,X
+.ccfb	c9 e6		cmp #$e6	       CMP #$E6
+.ccfd	f0 04		beq $cd03	       BEQ W1
+.ccff	c9 8c		cmp #$8c	       CMP #$8C
+.cd01	d0 17		bne $cd1a	       BNE COMMON
+.cd03	bd 02 01	lda $0102,x	W1     LDA STACK+2,X
+.cd06	c9 a7		cmp #$a7	       CMP #SAVX
+.cd08	f0 04		beq $cd0e	       BEQ FIND
+.cd0a	c9 a4		cmp #$a4	       CMP #$A4
+.cd0c	d0 0c		bne $cd1a	       BNE COMMON
+.cd0e	a5 a6		lda $a6		FIND LDA SAVA
+.cd10	a2 0b		ldx #$0b	       LDX #$0B
+.cd12	dd 1b cc	cmp $cc1b,x	F1     CMP SYMBOL,X
+.cd15	f0 11		beq $cd28	       BEQ FOUND
+.cd17	ca		dex		       DEX
+.cd18	10 f8		bpl $cd12	       BPL F1
+.cd1a	a5 a6		lda $a6		COMMON LDA SAVA
+.cd1c	a6 a7		ldx $a7		       LDX SAVX
+.cd1e	c9 3a		cmp #$3a	       CMP #$3A      ;':'
+.cd20	b0 03		bcs $cd25	       BCS NOTCOL
+.cd22	4c 80 00	jmp $0080	       JMP SPCCHK
+.cd25	4c 8a 00	jmp $008a	NOTCOL JMP CHREXT
+.cd28	86 a5		stx $a5		FOUND STX OFFSET
+.cd2a	8d 7a cc	sta $cc7a	       STA CURSYM
+.cd2d	20 a3 ce	jsr $cea3	       JSR PROCES
+.cd30	a6 a5		ldx $a5		       LDX OFFSET
+.cd32	a9 27		lda #$27	       LDA #$27      ;'''
+.cd34	85 bb		sta $bb		       STA FNADR
+.cd36	a9 cc		lda #$cc	       LDA #$CC
+.cd38	85 bc		sta $bc		       STA $BC
+.cd3a	ad 77 cc	lda $cc77	       LDA DEVICE
+.cd3d	85 ba		sta $ba		       STA FA
+.cd3f	bd 03 cc	lda $cc03,x	       LDA HIHVEC,X
+.cd42	48		pha		       PHA
+.cd43	bd 0f cc	lda $cc0f,x	       LDA LOWVEC,X
+.cd46	48		pha		       PHA
+.cd47	60		rts		       RTS
+.cd48	98		tya		COMMD  TYA
+.cd49	f0 45		beq $cd90	       BEQ XXCD90
+.cd4b	ad 27 cc	lda $cc27	       LDA XXCC27
+.cd4e	c9 24		cmp #$24	       CMP #$24      ;'$'
+.cd50	f0 60		beq $cdb2	       BEQ DIRECT
+.cd52	c9 30		cmp #$30	       CMP #$30      ;'0'
+.cd54	90 09		bcc $cd5f	       BCC XXCD5F
+.cd56	c9 3a		cmp #$3a	       CMP #$3A      ;':'
+.cd58	b0 05		bcs $cd5f	       BCS XXCD5F
+.cd5a	c6 b7		dec $b7		       DEC $B7
+.cd5c	4c 7f ce	jmp $ce7f	       JMP XXCE7F
+.cd5f	c9 51		cmp #$51	XXCD5F CMP #$51      ;'Q'
+.cd61	d0 03		bne $cd66	       BNE XXCD66
+.cd63	4c 6c ce	jmp $ce6c	       JMP XXCE6C
+.cd66	c9 4e		cmp #$4e	XXCD66 CMP #$4E      ;'N'
+.cd68	f0 04		beq $cd6e	       BEQ XXCD6E
+.cd6a	c9 53		cmp #$53	       CMP #$53      ;'S'
+.cd6c	d0 03		bne $cd71	       BNE XXCD71
+.cd6e	20 bd cf	jsr $cfbd	XXCD6E JSR XXCFBD
+.cd71	a5 ba		lda $ba		XXCD71 LDA FA
+.cd73	20 b1 ff	jsr $ffb1	       JSR LISTEN
+.cd76	a9 6f		lda #$6f	       LDA #$6F
+.cd78	85 b9		sta $b9		       STA SA
+.cd7a	20 93 ff	jsr $ff93	       JSR SECOND
+.cd7d	a0 00		ldy #$00	       LDY #$00
+.cd7f	b9 27 cc	lda $cc27,y	XXCD7F LDA XXCC27,Y
+.cd82	20 a8 ff	jsr $ffa8	       JSR CIOUT
+.cd85	c8		iny		       INY
+.cd86	c4 b7		cpy $b7		       CPY $B7
+.cd88	90 f5		bcc $cd7f	       BCC XXCD7F
+.cd8a	20 ae ff	jsr $ffae	       JSR UNLSN
+.cd8d	4c af cd	jmp $cdaf	       JMP XXCDAF
+.cd90	a5 ba		lda $ba		XXCD90 LDA FA
+.cd92	20 b4 ff	jsr $ffb4	       JSR TALK
+.cd95	a9 6f		lda #$6f	       LDA #$6F
+.cd97	85 b9		sta $b9		       STA SA
+.cd99	20 96 ff	jsr $ff96	       JSR TKSA
+.cd9c	a9 0d		lda #$0d	       LDA #$0D
+.cd9e	20 16 e7	jsr $e716	XXCD9E JSR PRT
+.cda1	20 a5 ff	jsr $ffa5	       JSR ACPTR
+.cda4	c9 0d		cmp #$0d	       CMP #$0D
+.cda6	d0 f6		bne $cd9e	       BNE XXCD9E
+.cda8	20 16 e7	jsr $e716	       JSR PRT
+.cdab	20 ab ff	jsr $ffab	       JSR UNTLK
+.cdae	ea		nop		       NOP
+.cdaf	4c 79 00	jmp $0079	XXCDAF JMP CHRGOT
+.cdb2	a9 60		lda #$60	DIRECT LDA #$60
+.cdb4	85 b9		sta $b9		       STA SA
+.cdb6	20 d5 f3	jsr $f3d5	       JSR SROPEN
+.cdb9	a5 ba		lda $ba		       LDA FA
+.cdbb	20 b4 ff	jsr $ffb4	       JSR TALK
+.cdbe	a5 b9		lda $b9		       LDA SA
+.cdc0	20 96 ff	jsr $ff96	       JSR TKSA
+.cdc3	a9 00		lda #$00	       LDA #$00
+.cdc5	85 90		sta $90		       STA STATUS
+.cdc7	a0 03		ldy #$03	       LDY #$03
+.cdc9	84 b7		sty $b7		NEXTLN STY $B7
+.cdcb	20 a5 ff	jsr $ffa5	       JSR ACPTR
+.cdce	85 c3		sta $c3		       STA TEMP
+.cdd0	20 a5 ff	jsr $ffa5	       JSR ACPTR
+.cdd3	85 c4		sta $c4		       STA TEMP+1
+.cdd5	a4 90		ldy $90		       LDY STATUS
+.cdd7	d0 3e		bne $ce17	       BNE DIROFF
+.cdd9	a4 b7		ldy $b7		       LDY $B7
+.cddb	88		dey		       DEY
+.cddc	d0 eb		bne $cdc9	       BNE NEXTLN
+.cdde	a6 c3		ldx $c3		       LDX TEMP
+.cde0	a5 c4		lda $c4		       LDA TEMP+1
+.cde2	20 cd bd	jsr $bdcd	       JSR $BDCD
+.cde5	a9 20		lda #$20	       LDA #$20      ;' '
+.cde7	20 16 e7	jsr $e716	       JSR PRT
+.cdea	20 a5 ff	jsr $ffa5	BODY JSR ACPTR
+.cded	a6 90		ldx $90		       LDX STATUS
+.cdef	d0 26		bne $ce17	       BNE DIROFF
+.cdf1	c9 00		cmp #$00	       CMP #$00
+.cdf3	f0 18		beq $ce0d	       BEQ FINLIN
+.cdf5	20 16 e7	jsr $e716	       JSR PRT
+.cdf8	20 e1 ff	jsr $ffe1	       JSR STOP
+.cdfb	f0 1a		beq $ce17	       BEQ DIROFF
+.cdfd	20 e4 ff	jsr $ffe4	       JSR GETIN
+.ce00	f0 e8		beq $cdea	       BEQ BODY
+.ce02	c9 20		cmp #$20	       CMP #$20      ;' '
+.ce04	d0 e4		bne $cdea	       BNE BODY
+.ce06	20 e4 ff	jsr $ffe4	PAUSE JSR GETIN
+.ce09	f0 fb		beq $ce06	       BEQ PAUSE
+.ce0b	d0 dd		bne $cdea	       BNE BODY
+.ce0d	a9 0d		lda #$0d	FINLIN LDA #$0D
+.ce0f	20 16 e7	jsr $e716	       JSR PRT
+.ce12	a0 02		ldy #$02	       LDY #$02
+.ce14	4c c9 cd	jmp $cdc9	       JMP NEXTLN
+.ce17	20 42 f6	jsr $f642	DIROFF JSR XCLOSE
+.ce1a	a9 0d		lda #$0d	       LDA #$0D
+.ce1c	20 16 e7	jsr $e716	       JSR PRT
+.ce1f	4c 79 00	jmp $0079	       JMP CHRGOT
+.ce22	a6 2b		ldx $2b		LOADER LDX TXTTAB
+.ce24	a4 2c		ldy $2c		       LDY TXTTAB+1
+.ce26	20 5f cf	jsr $cf5f	       JSR FILOPT
+.ce29	c9 25		cmp #$25	       CMP #$25      ;'%'
+.ce2b	d0 03		bne $ce30	       BNE XXCE30
+.ce2d	a9 01		lda #$01	       LDA #$01
+>ce2f	2c				       .BYTE $2C
+.ce30	a9 00		lda #$00	XXCE30 LDA #$00
+.ce32	85 b9		sta $b9		       STA SA
+.ce34	a5 0a		lda $0a		       LDA $0A
+.ce36	20 d5 ff	jsr $ffd5	       JSR LOAD
+.ce39	90 03		bcc $ce3e	       BCC XXCE3E
+.ce3b	4c f9 e0	jmp $e0f9	       JMP KERIO
+.ce3e	a5 0a		lda $0a		XXCE3E LDA $0A
+.ce40	f0 03		beq $ce45	       BEQ XXCE45
+.ce42	4c 7e e1	jmp $e17e	       JMP $E17E
+.ce45	20 b7 ff	jsr $ffb7	XXCE45 JSR READST
+.ce48	29 bf		and #$bf	       AND #$BF
+.ce4a	f0 03		beq $ce4f	       BEQ XXCE4F
+.ce4c	4c 9c e1	jmp $e19c	       JMP $E19C
+.ce4f	ad 7a cc	lda $cc7a	XXCE4F LDA CURSYM
+.ce52	c9 25		cmp #$25	       CMP #$25      ;'%'
+.ce54	d0 01		bne $ce57	       BNE XXCE57
+.ce56	60		rts		       RTS
+.ce57	86 2d		stx $2d		XXCE57 STX VARTAB
+.ce59	84 2e		sty $2e		       STY VARTAB+1
+.ce5b	20 5e a6	jsr $a65e	       JSR CLEAR
+.ce5e	ad 7a cc	lda $cc7a	       LDA CURSYM
+.ce61	c9 5e		cmp #$5e	       CMP #$5E      ;'^'
+.ce63	d0 03		bne $ce68	       BNE XXCE68
+.ce65	4c b2 cf	jmp $cfb2	       JMP XXCFB2
+.ce68	4c a1 e1	jmp $e1a1	XXCE68 JMP $E1A1
+.ce6b	ea		nop		       NOP
+.ce6c	a2 02		ldx #$02	XXCE6C LDX #$02
+.ce6e	bd ab e3	lda $e3ab,x	XXCE6E LDA CHRCPY,X
+.ce71	95 7c		sta $7c,x	       STA POINTB,X
+.ce73	ca		dex		       DEX
+.ce74	10 f8		bpl $ce6e	       BPL XXCE6E
+.ce76	4c 79 00	jmp $0079	       JMP CHRGOT
+.ce79	20 59 e1	jsr $e159	       JSR SAVET
+.ce7c	4c 90 a4	jmp $a490	       JMP $A490
+.ce7f	a4 b7		ldy $b7		XXCE7F LDY $B7
+.ce81	b9 27 cc	lda $cc27,y	       LDA XXCC27,Y
+.ce84	29 0f		and #$0f	       AND #$0F
+.ce86	8d 77 cc	sta $cc77	       STA DEVICE
+.ce89	88		dey		       DEY
+.ce8a	30 14		bmi $cea0	       BMI XXCEA0
+.ce8c	b9 27 cc	lda $cc27,y	       LDA XXCC27,Y
+.ce8f	29 0f		and #$0f	       AND #$0F
+.ce91	a8		tay		       TAY
+.ce92	30 0c		bmi $cea0	       BMI XXCEA0
+.ce94	ad 77 cc	lda $cc77	       LDA DEVICE
+.ce97	18		clc		       CLC
+.ce98	69 0a		adc #$0a	XXCE98 ADC #$0A
+.ce9a	88		dey		       DEY
+.ce9b	d0 fb		bne $ce98	       BNE XXCE98
+.ce9d	8d 77 cc	sta $cc77	       STA DEVICE
+.cea0	4c 79 00	jmp $0079	XXCEA0 JMP CHRGOT
+.cea3	a0 00		ldy #$00	PROCES LDY #$00
+.cea5	20 73 00	jsr $0073	       JSR CHRGET
+.cea8	aa		tax		       TAX
+.cea9	d0 03		bne $ceae	       BNE XXCEAE
+.ceab	4c 3a cf	jmp $cf3a	       JMP XXCF3A
+.ceae	a9 60		lda #$60	XXCEAE LDA #$60
+.ceb0	85 7c		sta $7c		       STA POINTB
+.ceb2	a5 7a		lda $7a		       LDA TXTPTR
+.ceb4	48		pha		       PHA
+.ceb5	a5 7b		lda $7b		       LDA TXTPTR+1
+.ceb7	48		pha		       PHA
+.ceb8	8a		txa		       TXA
+.ceb9	c9 22		cmp #$22	XXCEB9 CMP #$22      ;'"'
+.cebb	f0 1e		beq $cedb	       BEQ XXCEDB
+.cebd	20 73 00	jsr $0073	       JSR CHRGET
+.cec0	d0 f7		bne $ceb9	       BNE XXCEB9
+.cec2	68		pla		       PLA
+.cec3	85 7b		sta $7b		       STA TXTPTR+1
+.cec5	68		pla		       PLA
+.cec6	85 7a		sta $7a		       STA TXTPTR
+.cec8	20 79 00	jsr $0079	       JSR CHRGOT
+.cecb	a2 00		ldx #$00	       LDX #$00
+.cecd	c9 22		cmp #$22	       CMP #$22      ;'"'
+.cecf	f0 0e		beq $cedf	       BEQ XXCEDF
+.ced1	ea		nop		       NOP
+.ced2	ea		nop		       NOP
+.ced3	ea		nop		       NOP
+.ced4	ea		nop		       NOP
+.ced5	ea		nop		       NOP
+.ced6	ea		nop		       NOP
+.ced7	a2 00		ldx #$00	       LDX #$00
+.ced9	f0 09		beq $cee4	       BEQ XXCEE4
+.cedb	68		pla		XXCEDB PLA
+.cedc	68		pla		       PLA
+.cedd	a2 00		ldx #$00	       LDX #$00
+.cedf	20 73 00	jsr $0073	XXCEDF JSR CHRGET
+.cee2	f0 56		beq $cf3a	       BEQ XXCF3A
+.cee4	c9 22		cmp #$22	XXCEE4 CMP #$22      ;'"'
+.cee6	f0 52		beq $cf3a	       BEQ XXCF3A
+.cee8	c9 3d		cmp #$3d	       CMP #$3D      ;'='
+.ceea	f0 04		beq $cef0	       BEQ XXCEF0
+.ceec	c9 3a		cmp #$3a	       CMP #$3A      ;':'
+.ceee	d0 02		bne $cef2	       BNE XXCEF2
+.cef0	a2 ff		ldx #$ff	XXCEF0 LDX #$FF
+.cef2	c9 5b		cmp #$5b	XXCEF2 CMP #$5B      ;'['
+.cef4	f0 0a		beq $cf00	       BEQ XXCF00
+.cef6	99 27 cc	sta $cc27,y	XXCEF6 STA XXCC27,Y
+.cef9	8d 79 cc	sta $cc79	       STA SUFFIX+1
+.cefc	e8		inx		       INX
+.cefd	c8		iny		       INY
+.cefe	10 df		bpl $cedf	       BPL XXCEDF
+.cf00	20 73 00	jsr $0073	XXCF00 JSR CHRGET
+.cf03	f0 2e		beq $cf33	       BEQ XXCF33
+.cf05	8d 78 cc	sta $cc78	       STA SUFFIX
+.cf08	20 73 00	jsr $0073	       JSR CHRGET
+.cf0b	f0 26		beq $cf33	       BEQ XXCF33
+.cf0d	c9 5d		cmp #$5d	       CMP #$5D      ;']'
+.cf0f	d0 22		bne $cf33	       BNE XXCF33
+.cf11	e0 10		cpx #$10	       CPX #$10
+.cf13	b0 1e		bcs $cf33	       BCS XXCF33
+.cf15	ad 79 cc	lda $cc79	       LDA SUFFIX+1
+.cf18	c9 2a		cmp #$2a	       CMP #$2A      ;'*'
+.cf1a	d0 05		bne $cf21	       BNE XXCF21
+.cf1c	88		dey		       DEY
+.cf1d	ca		dex		       DEX
+.cf1e	a9 3f		lda #$3f	       LDA #$3F      ;'?'
+>cf20	2c				       .BYTE $2C
+.cf21	a9 20		lda #$20	XXCF21 LDA #$20      ;' '
+.cf23	e0 0f		cpx #$0f	XXCF23 CPX #$0F
+.cf25	b0 07		bcs $cf2e	       BCS XXCF2E
+.cf27	99 27 cc	sta $cc27,y	       STA XXCC27,Y
+.cf2a	c8		iny		       INY
+.cf2b	e8		inx		       INX
+.cf2c	10 f5		bpl $cf23	       BPL XXCF23
+.cf2e	ad 78 cc	lda $cc78	XXCF2E LDA SUFFIX
+.cf31	d0 c3		bne $cef6	       BNE XXCEF6
+.cf33	a2 4c		ldx #$4c	XXCF33 LDX #$4C      ;'L'
+.cf35	86 7c		stx $7c		       STX POINTB
+.cf37	4c 08 af	jmp $af08	       JMP SYNERR
+.cf3a	84 b7		sty $b7		XXCF3A STY $B7
+.cf3c	a2 4c		ldx #$4c	       LDX #$4C      ;'L'
+.cf3e	86 7c		stx $7c		       STX POINTB
+.cf40	20 79 00	jsr $0079	       JSR CHRGOT
+.cf43	f0 05		beq $cf4a	       BEQ XXCF4A
+.cf45	20 73 00	jsr $0073	XXCF45 JSR CHRGET
+.cf48	d0 fb		bne $cf45	       BNE XXCF45
+.cf4a	60		rts		XXCF4A RTS
+.cf4b	a5 7b		lda $7b		PRMESS LDA TXTPTR+1
+.cf4d	c9 02		cmp #$02	       CMP #$02
+.cf4f	d0 0d		bne $cf5e	       BNE XXCF5E
+.cf51	a2 00		ldx #$00	       LDX #$00
+.cf53	bd 7b cc	lda $cc7b,x	XXCF53 LDA MANAGE,X
+.cf56	f0 06		beq $cf5e	       BEQ XXCF5E
+.cf58	20 16 e7	jsr $e716	       JSR PRT
+.cf5b	e8		inx		       INX
+.cf5c	d0 f5		bne $cf53	       BNE XXCF53
+.cf5e	60		rts		XXCF5E RTS
+.cf5f	a9 00		lda #$00	FILOPT LDA #$00
+.cf61	85 0a		sta $0a		       STA $0A
+.cf63	ad 7a cc	lda $cc7a	       LDA CURSYM
+.cf66	c9 3d		cmp #$3d	       CMP #$3D      ;'='
+.cf68	d0 04		bne $cf6e	       BNE FT1
+.cf6a	a9 01		lda #$01	       LDA #$01
+.cf6c	85 0a		sta $0a		       STA $0A
+.cf6e	c9 26		cmp #$26	FT1    CMP #$26      ;'&'
+.cf70	f0 01		beq $cf73	       BEQ APEND
+.cf72	60		rts		       RTS
+.cf73	38		sec		APEND SEC
+.cf74	a5 2d		lda $2d		       LDA VARTAB
+.cf76	e9 02		sbc #$02	       SBC #$02
+.cf78	aa		tax		       TAX
+.cf79	a5 2e		lda $2e		       LDA VARTAB+1
+.cf7b	e9 00		sbc #$00	       SBC #$00
+.cf7d	a8		tay		       TAY
+.cf7e	60		rts		       RTS
+.cf7f	ea		nop		XXCF7F NOP
+>cf80	00 00 00 00 00 00 00 00		       .BYTE $00,$00,$00,$00,$00,$00,$00,$00
+>cf88	00 00 00 00 00 00 00 00		       .BYTE $00,$00,$00,$00,$00,$00,$00,$00
+>cf90	00 00 00 00 00 00 00 00		       .BYTE $00,$00,$00,$00,$00,$00,$00,$00
+>cf98	00 00 00 00 00 00 00 00		       .BYTE $00,$00,$00,$00,$00,$00,$00,$00
+>cfa0	00 00 00 00 00 00 00 00		       .BYTE $00,$00,$00,$00,$00,$00,$00,$00
+>cfa8	00 00 00 00 00 00 00 00		       .BYTE $00,$00,$00,$00,$00,$00,$00,$00
+.cfb0	ea		nop		       NOP
+.cfb1	ea		nop		XXCFB1 NOP
+.cfb2	a9 00		lda #$00	XXCFB2 LDA #$00
+.cfb4	20 90 ff	jsr $ff90	       JSR SETMSG
+.cfb7	20 8e a6	jsr $a68e	       JSR STXPT
+.cfba	4c ae a7	jmp $a7ae	       JMP NEWSTT
+.cfbd	a2 00		ldx #$00	XXCFBD LDX #$00
+.cfbf	bd db cf	lda $cfdb,x	XXCFBF LDA XXCFDB,X
+.cfc2	f0 06		beq $cfca	       BEQ XXCFCA
+.cfc4	20 16 e7	jsr $e716	       JSR PRT
+.cfc7	e8		inx		       INX
+.cfc8	d0 f5		bne $cfbf	       BNE XXCFBF
+.cfca	20 e4 ff	jsr $ffe4	XXCFCA JSR GETIN
+.cfcd	c9 4e		cmp #$4e	       CMP #$4E      ;'N'
+.cfcf	d0 05		bne $cfd6	       BNE XXCFD6
+.cfd1	68		pla		       PLA
+.cfd2	68		pla		       PLA
+.cfd3	4c af cd	jmp $cdaf	       JMP XXCDAF
+.cfd6	c9 59		cmp #$59	XXCFD6 CMP #$59      ;'Y'
+.cfd8	d0 f0		bne $cfca	       BNE XXCFCA
+.cfda	60		rts		       RTS
+>cfdb	41 52 45 20 59 4f 55 20		XXCFDB .TEXT 'ARE YOU SURE (Y/N)?'
+>cfe3	53 55 52 45 20 28 59 2f 4e 29 3f
+>cfee	0d 00				       .BYTE $0D,$00
+.cff0	ad 27 cc	lda $cc27	SAVER  LDA XXCC27
+.cff3	c9 40		cmp #$40	       CMP #$40
+.cff5	d0 03		bne $cffa	       BNE XXCFFA
+.cff7	20 bd cf	jsr $cfbd	       JSR XXCFBD
+.cffa	20 59 e1	jsr $e159	XXCFFA JSR SAVET
+.cffd	4c 90 cd	jmp $cd90	       JMP XXCD90
+=52769					VECTR1= LOADER-1 ;%
+=52769					VECTR2= LOADER-1 ;/
+=52769					VECTR3= LOADER-1 ;TOKENED /
+=52769					VECTR4= LOADER-1 ;^
+=52769					VECTR5= LOADER-1 ;TOKENED ^
+=53231					VECTR6= SAVER-1  ;_
+=52551					VECTR7= COMMD-1  ;>
+=52551					VECTR8= COMMD-1  ;TOKENED >
+=52551					VECTR9= COMMD-1  ;@
+=52444					VECTRA= MONTOR-1 ;!
+=52551					VECTRB= COMMD-1  ;@Q
+=52551					VECTRC= COMMD-1  ;
+
+;******  Return to file: ccdose.asm
+
+
+;******  End of listing

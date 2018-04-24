@@ -1,0 +1,14 @@
+
+C:\My Commodore\Commodore 2018\Commodore Macro Assembler Development System\MADS 64 Assembler64 Extensions\Enhanced Monitor\monitor080f tass>64tass basmon.asm -L basmon.lst -o basmon.prg  
+64tass Turbo Assembler Macro V1.53.1515
+64TASS comes with ABSOLUTELY NO WARRANTY; This is free software, and you
+are welcome to redistribute it under certain conditions; See LICENSE!
+
+Assembling file:   basmon.asm
+Assembling file:   mon.asm
+Error messages:    None
+Warning messages:  None
+Passes:            3
+Memory range:      $0801-$180e   $100e
+
+C:\My Commodore\Commodore 2018\Commodore Macro Assembler Development System\MADS 64 Assembler64 Extensions\Enhanced Monitor\monitor080f tass>rem pause 
